@@ -13,20 +13,14 @@ import fr.inria.papart.multitouch.*;
 import fr.inria.papart.multitouch.metaphors.*;
 import fr.inria.papart.tracking.*;
 
-import toxi.geom.*;
-import org.bytedeco.javacpp.opencv_core;
-import org.reflections.*;
-
 Papart papart;
 
 PVector A4BoardSize = new PVector(297, 210);   //  21 * 29.7 cm
 PVector A3BoardSize = new PVector(420, 297);   //  21 * 29.7 cm
-displayMap map;
-
 
 public void setup()
 {
-  papart = Papart.seeThrough(this);
+  papart = Papart.projection(this);
   papart.loadTouchInput();
   papart.loadSketches();
   papart.startTracking();

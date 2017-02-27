@@ -1,10 +1,5 @@
 public class displayMap extends PaperTouchScreen
 {
-  TrackedView boardView;
-  PVector captureSize = new PVector((int) A4BoardSize.x-50, (int) A4BoardSize.y - 50);
-  PVector origin = new PVector(50, 50);
-  int picSize = 128;
-  boolean isActivated = false;
   
   public void settings()
   {
@@ -13,15 +8,7 @@ public class displayMap extends PaperTouchScreen
     setDrawOnPaper();
   }
   
-  public void setup()
-  {
-    boardView = new TrackedView(this);
-    boardView.setCaptureSizeMM(captureSize);
-    boardView.setImageWidthPx(picSize);
-    boardView.setImageHeightPx(picSize);
-    boardView.setTopLeftCorner(origin);
-    boardView.init();
-  }
+  public void setup(){}
   
   public void drawOnPaper()
   {

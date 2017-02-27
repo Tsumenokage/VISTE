@@ -13,6 +13,9 @@ import fr.inria.papart.utils.*;
 import fr.inria.papart.multitouch.*;
 import fr.inria.papart.multitouch.metaphors.*;
 import fr.inria.papart.tracking.*;
+import org.bytedeco.javacpp.*;
+import processing.opengl.*;
+import org.reflections.*;
 
 Papart papart;
 
@@ -21,7 +24,7 @@ PVector A3BoardSize = new PVector(420, 297);   //  21 * 29.7 cm
 
 public void setup()
 {
-  papart = Papart.projection(this);
+  papart = Papart.seeThrough(this);
   papart.loadTouchInput();
   papart.loadSketches();
   papart.startTracking();

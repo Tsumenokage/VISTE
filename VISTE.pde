@@ -18,14 +18,19 @@ import processing.opengl.*;
 import org.reflections.*;
 import toxi.geom.*;
 
+import tech.lity.rea.svgextended.*;
+
 Papart papart;
 
 PVector A4BoardSize = new PVector(297, 210);   //  21 * 29.7 cm
 PVector A3BoardSize = new PVector(420, 297);   //  21 * 29.7 cm
 
+final int zoomLevelOut = 12;
+final int zoomLevelIn = 18;
+
 public void setup()
 {
-  papart = Papart.seeThrough(this);
+  papart = Papart.projection(this);
   papart.loadTouchInput();
   papart.loadSketches();
   papart.startTracking();

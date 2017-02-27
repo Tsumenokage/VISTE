@@ -4,7 +4,7 @@ public class displayMap extends PaperTouchScreen
   public void settings()
   {
     setDrawingSize(A4BoardSize.x,A4BoardSize.y);
-    loadMarkerBoard(Papart.markerFolder + "A4-default.svg",A4BoardSize.x,A4BoardSize.y);
+    loadMarkerBoard(Papart.markerFolder + "A3-default.svg",A4BoardSize.x,A4BoardSize.y);
     setDrawOnPaper();
   }
   

@@ -16,6 +16,7 @@ import fr.inria.papart.tracking.*;
 import org.bytedeco.javacpp.*;
 import processing.opengl.*;
 import org.reflections.*;
+import toxi.geom.*;
 
 Papart papart;
 

@@ -2,6 +2,7 @@ import fr.inria.papart.depthcam.*;
 import fr.inria.papart.depthcam.devices.*;
 import fr.inria.papart.depthcam.analysis.*;
 import fr.inria.papart.tuio.*;
+
 import fr.inria.papart.apps.*;
 import fr.inria.papart.procam.*;
 import fr.inria.papart.procam.display.*;

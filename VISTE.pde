@@ -38,5 +38,5 @@ public void setup()
 
 void settings()
 {
-  size(640,480,P3D); 
+  fullScreen(P3D);
 }

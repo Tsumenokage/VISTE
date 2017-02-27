@@ -13,7 +13,7 @@ public class displayMap extends PaperTouchScreen
   public void drawOnPaper()
   {
    background(0,0,200,100);
-   fill(0,100,0,100);
+   fill(100,0,0);
    rect(98.7f,140,101,12);    
   }
   

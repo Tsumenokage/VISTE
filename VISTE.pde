@@ -27,6 +27,7 @@ PVector A3BoardSize = new PVector(420, 297);   //  21 * 29.7 cm
 
 final int zoomLevelOut = 12;
 final int zoomLevelIn = 18;
+PShape bot;
 
 public void setup()
 {
@@ -34,6 +35,7 @@ public void setup()
   papart.loadTouchInput();
   papart.loadSketches();
   papart.startTracking();
+  bot = loadShape(sketchPath() + "/data/map.svg");
 }
 
 void settings()

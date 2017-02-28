@@ -1,11 +1,11 @@
 public class displayMap extends PaperTouchScreen
 {
- 
-  PShape bot = loadShape("Map.svg");
+
   public void settings()
   {
     setDrawingSize(A3BoardSize.x,A3BoardSize.y);
     loadMarkerBoard(Papart.markerFolder + "A3-default.svg",A3BoardSize.x,A3BoardSize.y);
+    
     //setDrawOnPaper();
   }
   

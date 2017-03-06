@@ -48,11 +48,11 @@ public class displayMap extends PaperTouchScreen
     xml = loadXML("map.svg");
     XML[] childrenG = xml.getChildren("g");
     XML[] childrenPath = {};
-    
+     XML[] rectPath = {};
     for(int i = 0; i < childrenG.length;i++)
     {
      childrenPath = (XML[])concat(childrenPath, childrenG[i].getChildren("path"));
-     
+     rectPath = (XML[])concat(rectPath, childrenG[i].getChildren("rect"));
     }
     
     
@@ -62,6 +62,15 @@ public class displayMap extends PaperTouchScreen
      if(childrenPath[i].getChild("desc") != null)
      desc = childrenPath[i].getChild("desc").getContent();
      String name = childrenPath[i].getString("id");
+     shapeNameDesc.put(name,desc);
+    }
+    
+    for(int i = 0;i<rectPath.length;i++)
+    {
+     String desc = "Aucune description disponible";
+     if(rectPath[i].getChild("desc") != null)
+     desc = rectPath[i].getChild("desc").getContent();
+     String name = rectPath[i].getString("id");
      shapeNameDesc.put(name,desc);
     }
         
@@ -76,7 +85,8 @@ public class displayMap extends PaperTouchScreen
     for(int k = 0;k < formes.length;k++)
     {
       if(formes[k].getFamily() == 102)
-      {float distance = 9999999;
+      {
+        float distance = 9999999;
         for(int i = 0;i < formes[k].getVertexCount()-1; i++)
         {
           float dist = SquaredDistancePointToLineSegment(formes[k].getVertex(i),formes[k].getVertex(i+1),pos,S);
@@ -90,6 +100,19 @@ public class displayMap extends PaperTouchScreen
           println(shapeNameDesc.get(formes[k].getName()));
           println(formes[k].getName() + " : " + distance);
         }
+      }
+      else if(formes[k].getKind() == RECT)
+      {
+        float x = formes[k].getParam(0);
+        float y = formes[k].getParam(1);
+        float width = formes[k].getParam(2);
+        float height = formes[k].getParam(3);
+        
+        if(pos.x > x && pos.x < x + width && pos.y > y && pos.y < y + height)
+        {
+          println(shapeNameDesc.get(formes[k].getName()));
+        }
+        
       }
     }
   }

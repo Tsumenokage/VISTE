@@ -7,9 +7,12 @@ public class displayMap extends PaperTouchScreen
   XML xml;
 
   Map<String, String> shapeNameDesc = new HashMap<String, String>();
-  
+    
   public void settings()
   {
+    
+    
+    
     setDrawingSize(A3BoardSize.x,A3BoardSize.y);
     loadMarkerBoard(Papart.markerFolder + "A3-default.svg",A3BoardSize.x,A3BoardSize.y);
     formes = bot.getChildren()[1].getChildren();
@@ -34,11 +37,23 @@ public class displayMap extends PaperTouchScreen
    updateTouch();
    drawTouch();
    
-   touchList = getTouchList();
-   for(Touch t : touchList)
-   {
-    checkDistance(t.position);
-   }
+
+  }
+  
+  public void checkPosition()
+  {
+     updateTouch();
+     touchList = getTouchList();
+     if(touchList.size()==1)
+       for(Touch t : touchList)
+       {
+         String places;
+         places = checkDistance(t.position);
+         if(places != "")
+           tts(places);
+       }
+     else
+       tts("Plus d'un seul doigt détecté");
   }
   
   public void parseSVG()
@@ -76,8 +91,9 @@ public class displayMap extends PaperTouchScreen
         
   }
   
-  public void checkDistance(PVector pos)
+  public String checkDistance(PVector pos)
   {
+    String places = "";
     Screen screen = getScreen();
     PVector S = new PVector(0,0,0);
     PVector[] corners = screen.getCornerPos(getCameraTracking());
@@ -97,8 +113,7 @@ public class displayMap extends PaperTouchScreen
         }
         if(distance <=20)
         {
-          println(shapeNameDesc.get(formes[k].getName()));
-          println(formes[k].getName() + " : " + distance);
+          places += shapeNameDesc.get(formes[k].getName());
         }
       }
       else if(formes[k].getKind() == RECT)
@@ -110,11 +125,13 @@ public class displayMap extends PaperTouchScreen
         
         if(pos.x > x && pos.x < x + width && pos.y > y && pos.y < y + height)
         {
-          println(shapeNameDesc.get(formes[k].getName()));
+          places += " " + shapeNameDesc.get(formes[k].getName());
         }
         
       }
     }
+    println(places);
+    return places;
   }
   
   public PShape[] getFormes()

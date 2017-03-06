@@ -50,3 +50,8 @@ void settings()
 {
   fullScreen(P2D);
 }
+
+void mouseClicked()
+{
+ map.checkPosition();
+}

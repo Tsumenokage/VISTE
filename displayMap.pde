@@ -1,3 +1,7 @@
+
+/**
+* This class will be use for two things, display the map and check the positions of the fingers
+*/
 public class displayMap extends PaperTouchScreen
 {
   private PShape[] formes;
@@ -6,13 +10,11 @@ public class displayMap extends PaperTouchScreen
   ArrayList<TouchPoint> touchs2D = new ArrayList<TouchPoint>();
   XML xml;
 
+
   Map<String, String> shapeNameDesc = new HashMap<String, String>();
     
   public void settings()
   {
-    
-    
-    
     setDrawingSize(A3BoardSize.x,A3BoardSize.y);
     loadMarkerBoard(Papart.markerFolder + "A3-default.svg",A3BoardSize.x,A3BoardSize.y);
     formes = bot.getChildren()[1].getChildren();

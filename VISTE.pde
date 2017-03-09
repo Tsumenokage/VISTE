@@ -20,10 +20,21 @@ import toxi.geom.*;
 
 import tech.lity.rea.svgextended.*;
 import java.util.*;
+
+/**
+* Papart variable
+*/
 Papart papart;
 
-PVector A4BoardSize = new PVector(297, 210);   //  21 * 29.7 cm
-PVector A3BoardSize = new PVector(420, 297);   //  21 * 29.7 cm
+/**
+* Pvector with contains A4 dimensions in mm //<>//
+*/
+PVector A4BoardSize = new PVector(297, 210);   //  29.7 * 21cm
+
+/**
+* Pvector with contains A3 dimensions in mm
+*/
+PVector A3BoardSize = new PVector(420, 297);   //  42 * 29.7 cm
 
 
 
@@ -33,24 +44,31 @@ float ratioY;
 
 displayMap map;
 
+/**
+ * Initialization function
+ */
 public void setup()
 {
-  papart = Papart.projection(this);
-  papart.loadTouchInput();
-  papart.loadSketches();
-  papart.startTracking();
-  bot = loadShape(sketchPath() + "/data/map.svg");
-  ratioX = 3.5433*A3BoardSize.x/bot.getWidth();
-  ratioY = 3.5433*A3BoardSize.y/bot.getHeight();
+  papart = Papart.projection(this); //Papart in projection mode
+  papart.loadTouchInput(); 
+  papart.loadSketches(); 
+  papart.startTracking(); 
+  bot = loadShape(sketchPath() + "/data/map.svg"); 
   map = new displayMap();
 
 }
 
+/**
+* Define the settings of the software
+*/
 void settings()
 {
   fullScreen(P2D);
 }
 
+/**
+* We use this function as an event to launch the checkPosition function of displayMap
+*/ 
 void mouseClicked()
 {
  map.checkPosition();

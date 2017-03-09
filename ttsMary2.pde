@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
 import processing.sound.*;
+
 void tts(String text)
 {
   PostRequest post = new PostRequest("http://127.0.0.1:59125/process?");

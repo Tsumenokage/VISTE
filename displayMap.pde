@@ -63,11 +63,13 @@ public class displayMap extends PaperTouchScreen
     xml = loadXML("map.svg");
     XML[] childrenG = xml.getChildren("g");
     XML[] childrenPath = {};
-     XML[] rectPath = {};
+    XML[] rectPath = {};
+    XML[] circlePath = {};
     for(int i = 0; i < childrenG.length;i++)
     {
      childrenPath = (XML[])concat(childrenPath, childrenG[i].getChildren("path"));
      rectPath = (XML[])concat(rectPath, childrenG[i].getChildren("rect"));
+     circlePath = (XML[])concat(rectPath, childrenG[i].getChildren("circle"));
     }
     
     
@@ -86,6 +88,15 @@ public class displayMap extends PaperTouchScreen
      if(rectPath[i].getChild("desc") != null)
      desc = rectPath[i].getChild("desc").getContent();
      String name = rectPath[i].getString("id");
+     shapeNameDesc.put(name,desc);
+    }
+    
+    for(int i = 0;i<circlePath.length;i++)
+    {
+     String desc = "Aucune description disponible";
+     if(circlePath[i].getChild("desc") != null)
+     desc = circlePath[i].getChild("desc").getContent();
+     String name = circlePath[i].getString("id");
      shapeNameDesc.put(name,desc);
     }
         
@@ -127,6 +138,18 @@ public class displayMap extends PaperTouchScreen
         {
           places += " " + shapeNameDesc.get(formes[k].getName());
         }
+        
+      }
+      else if(formes[k].getKind() == ELLIPSE)
+      {
+         float x = formes[k].getParam(0);
+         float y = formes[k].getParam(1);
+         float r = formes[k].getParam(2);
+         
+         if(Math.pow((pos.x - x),2) + Math.pow((pos.y - y),2) <= Math.pow(r,2))
+         {
+           places += " " + shapeNameDesc.get(formes[k].getName());
+         }
         
       }
     }

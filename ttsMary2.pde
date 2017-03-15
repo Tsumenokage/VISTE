@@ -4,29 +4,57 @@ import java.nio.file.Paths;
 import java.nio.file.Path;
 import processing.sound.*;
 
-void tts(String text)
+public class ttsMary
 {
-  PostRequest post = new PostRequest("http://127.0.0.1:59125/process?");
-  post.addData("INPUT_TEXT", text);
-  post.addData("INPUT_TYPE", "TEXT");
-  post.addData("LOCALE","fr");
-  post.addData("VOICE","upmc-pierre-hsmm");
-  post.addData("OUTPUT_TYPE","AUDIO");
-  post.addData("AUDIO","WAVE");
-  post.send();
-  println("Reponse Content: " + post.getContent());
-  println("Reponse Content-Length Header: " + post.getHeader("Content-Type"));
+  private String LOCALE = "fr";
+  private String VOICE = "upmc-pierre-hsmm";
   
-  byte[] bytesA = post.getContent().getBytes();
-  Path path = Paths.get(sketchPath("data") + "/output.wav");
-  try
+  public String getLocale()
   {
-  Files.write(path,bytesA);
-  
-  SoundFile file = new SoundFile(this, "output.wav");
-  file.rate(0.33);
-  file.play();
-  }catch (IOException e) {
-         System.err.println(e);
+      return LOCALE; 
   }
+  
+  public void setLocale(String Locale)
+  {
+     this.LOCALE = Locale; 
+  }
+  
+  public String getVoice()
+  {
+      return VOICE; 
+  }
+  
+  public void setVoice(String Voice)
+  {
+     this.VOICE = Voice;
+  }
+  
+  public void readText(String text)
+  {
+      PostRequest post = new PostRequest("http://127.0.0.1:59125/process?");
+      post.addData("INPUT_TEXT", text);
+      post.addData("INPUT_TYPE", "TEXT");
+      post.addData("LOCALE", LOCALE);
+      post.addData("VOICE",VOICE);
+      post.addData("OUTPUT_TYPE","AUDIO");
+      post.addData("AUDIO","WAVE");
+      post.send();
+      println("Reponse Content: " + post.getContent());
+      println("Reponse Content-Length Header: " + post.getHeader("Content-Type"));
+      
+      byte[] bytesA = post.getContent().getBytes();
+      Path path = Paths.get(sketchPath("data") + "/output.wav");
+      try
+      {
+      Files.write(path,bytesA);
+      
+      SoundFile file = new SoundFile(VISTE.this, "output.wav");
+      file.rate(0.33);
+      file.play();
+      }catch (IOException e) {
+             System.err.println(e);
+      }
+    
+  }
+  
 }

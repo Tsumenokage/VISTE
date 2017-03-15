@@ -9,7 +9,7 @@ public class displayMap extends PaperTouchScreen
   TouchList touchListe = new TouchList();
   ArrayList<TouchPoint> touchs2D = new ArrayList<TouchPoint>();
   XML xml;
-
+  ttsMary TTS = new ttsMary();
 
   Map<String, String> shapeNameDesc = new HashMap<String, String>();
     

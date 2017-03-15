@@ -20,7 +20,7 @@ import toxi.geom.*;
 
 import tech.lity.rea.svgextended.*;
 import java.util.*;
-
+import processing.serial.*;
 /**
 * Papart variable
 */
@@ -43,7 +43,8 @@ float ratioX;
 float ratioY;
 
 displayMap map;
-
+Serial myPort;  // The serial port
+Boolean touchBoard = true;
 /**
  * Initialization function
  */
@@ -55,6 +56,14 @@ public void setup()
   papart.startTracking(); 
   bot = loadShape(sketchPath() + "/data/map.svg"); 
   map = new displayMap();
+  
+  // List all the available serial ports
+  printArray(Serial.list());
+  // Open the port you are using at the rate you want:
+  if(Serial.list().length != 0)
+    myPort = new Serial(this, Serial.list()[0], 9600);
+  else 
+    touchBoard = false;
 
 }
 

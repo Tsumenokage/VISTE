@@ -39,6 +39,15 @@ public class displayMap extends PaperTouchScreen
    updateTouch();
    drawTouch();
    
+   if(touchBoard)
+     while (myPort.available() > 0) {
+        String inBuffer = myPort.readString();   
+        if (inBuffer != null) {
+          if(inBuffer == "0")
+            checkPosition();
+        }
+      }
+   
 
   }
   

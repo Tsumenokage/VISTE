@@ -122,7 +122,7 @@ public class displayMap extends PaperTouchScreen
     println(corners[0]);
     for(int k = 0;k < formes.length;k++)
     {
-      if(formes[k].getFamily() == 102)
+      if(formes[k].getFamily() == 102 && !formes[k].isClosed())
       {
         float distance = 9999999;
         for(int i = 0;i < formes[k].getVertexCount()-1; i++)
